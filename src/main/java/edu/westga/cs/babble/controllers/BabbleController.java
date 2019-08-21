@@ -4,7 +4,7 @@
 package edu.westga.cs.babble.controllers;
 
 import java.text.Format;
-
+import javafx.fxml.*;
 import edu.westga.cs.babble.model.PlayedWord;
 import edu.westga.cs.babble.model.Tile;
 import edu.westga.cs.babble.model.TileBag;
@@ -22,13 +22,19 @@ import javafx.scene.control.TextField;
  *
  */
 public class BabbleController {
-	
+	@FXML
 	private WordDictionary babbleDictionary;
+	@FXML
 	private PlayedWord babblePlayedWord;
+	@FXML
 	private TileBag babbleTileBag;
+	@FXML
 	private TileRack babbletileRack;
+	@FXML
 	private IntegerProperty babbleScoreProperty;
+	@FXML
     private Button resetButton;
+    @FXML
     private TextField scoreText;
 	
 	
