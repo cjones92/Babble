@@ -6,8 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="255.0" prefWidth="371.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="BabbleController.java">
+<fx:root prefHeight="255.0" prefWidth="371.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.babble.controllers.BabbleController">
    <children>
       <TextField layoutX="202.0" layoutY="217.0" prefHeight="25.0" prefWidth="146.0" text="0" />
       <Button layoutX="202.0" layoutY="152.0" mnemonicParsing="false" text="Reset" />
@@ -18,4 +17,4 @@
       <Label layoutX="14.0" layoutY="69.0" text="Your Word" />
       <Label layoutX="127.0" layoutY="221.0" text="Score" />
    </children>
-</AnchorPane>
+</fx:root>
