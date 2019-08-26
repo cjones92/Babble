@@ -53,10 +53,19 @@ public class BabbleController {
 		this.babbleTileRack = new TileRack();
 		this.resetButton = new Button();
 		this.scoreText = new TextField();
+		
+	}
+	
+	@FXML 
+	public void initialize() {
+		this.addTilesToListView();
+		this.setUpListView();
+		
 	}
 	
 	public void setUpListView() {
 		this.tilesListView.setItems(this.babbleTileRack.tiles());
+		System.out.println(this.babbleTileRack.tiles());
 		this.tilesListView.setCellFactory(new CellFactory());
 		
 	}
@@ -68,14 +77,18 @@ public class BabbleController {
 
 		@Override
 		public ListCell<Tile> call(ListView<Tile> arg0) {
+			
 			 final TextFieldListCell tilesForGame = new TextFieldListCell();
 		      tilesForGame.setConverter(new StringConverter<Tile>()
 		      {
+		    	 
 		        public String toString(Tile letter)
 		        {
-		          String lettersOfText = "" + letter.getLetter();
-		          tilesForGame.setAccessibleText(lettersOfText);
+		          String lettersOfText =letter.getLetter() + "";
+		          tilesForGame.setText(lettersOfText);
+		          System.out.println(lettersOfText);
 		          return lettersOfText ;
+		          
 		        }
 
 		        public Tile fromString(String tileString)
@@ -83,16 +96,27 @@ public class BabbleController {
 		          return null;
 		        }
 		      });
+			
+			
 		      return tilesForGame;
 		}
 	}
+		
 	
-	public void addTilesToListView() throws EmptyTileBagException {
+	
+	public void addTilesToListView() {
 		int numberOfTiles = this.babbleTileRack.getNumberOfTilesNeeded();
-		for (int index = 0; index < numberOfTiles; index++) {
-			Tile tile = this.babbleTileBag.drawTile();
+		for (int index = 0; index < numberOfTiles; index++) {				
+			Tile tile = null;
+			try {
+				tile = this.babbleTileBag.drawTile();
+			} catch (EmptyTileBagException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.babbleTileRack.append(tile);
 		}
+
 	}
 		
 		
