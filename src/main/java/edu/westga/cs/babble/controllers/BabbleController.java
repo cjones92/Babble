@@ -19,6 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.Callback;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 
 /**
@@ -44,6 +46,8 @@ public class BabbleController {
     private TextField scoreText;
     @FXML
     private ListView<Tile> tilesListView;
+    @FXML 
+    private ListView<Tile> usedWordListView;
 	
 	
 	public BabbleController() {
@@ -60,6 +64,7 @@ public class BabbleController {
 	public void initialize() {
 		this.addTilesToListView();
 		this.setUpListView();
+		this.setUpUsedWordListView();
 		
 	}
 	
@@ -67,6 +72,20 @@ public class BabbleController {
 		this.tilesListView.setItems(this.babbleTileRack.tiles());
 		System.out.println(this.babbleTileRack.tiles());
 		this.tilesListView.setCellFactory(new CellFactory());
+		this.tilesListView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent letterSelection) {
+				
+				
+			}
+		}
+				
+				);
+		
+	}
+	
+	public void setUpUsedWordListView() {
+		this.usedWordListView.setItems(this.babblePlayedWord.tiles());
+		this.usedWordListView.setCellFactory(new CellFactory());
 		
 	}
 	
@@ -81,16 +100,18 @@ public class BabbleController {
 			 final TextFieldListCell tilesForGame = new TextFieldListCell();
 		      tilesForGame.setConverter(new StringConverter<Tile>()
 		      {
-		    	 
+		    	
+		    	@Override
 		        public String toString(Tile letter)
 		        {
-		          String lettersOfText =letter.getLetter() + "";
+		          String lettersOfText = letter.getLetter() + "";
 		          tilesForGame.setText(lettersOfText);
 		          System.out.println(lettersOfText);
 		          return lettersOfText ;
 		          
 		        }
 
+		    	@Override
 		        public Tile fromString(String tileString)
 		        {
 		          return null;
@@ -116,7 +137,8 @@ public class BabbleController {
 			}
 			this.babbleTileRack.append(tile);
 		}
-
+	
+	
 	}
 		
 		
