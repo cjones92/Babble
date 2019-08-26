@@ -10,6 +10,7 @@ import edu.westga.cs.babble.model.PlayedWord;
 import edu.westga.cs.babble.model.Tile;
 import edu.westga.cs.babble.model.TileBag;
 import edu.westga.cs.babble.model.TileGroup;
+import edu.westga.cs.babble.model.TileNotInGroupException;
 import edu.westga.cs.babble.model.TileRack;
 import javafx.beans.property.IntegerProperty;
 import javafx.scene.control.Button;
@@ -72,8 +73,16 @@ public class BabbleController {
 		this.tilesListView.setItems(this.babbleTileRack.tiles());
 		System.out.println(this.babbleTileRack.tiles());
 		this.tilesListView.setCellFactory(new CellFactory());
-		this.tilesListView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+		this.tilesListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent letterSelection) {
+				Tile chosenTile = (Tile)BabbleController.this.tilesListView.getSelectionModel().getSelectedItem();
+				try {
+					BabbleController.this.babbleTileRack.remove(chosenTile);
+					BabbleController.this.babblePlayedWord.append(chosenTile);
+				} catch (TileNotInGroupException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				
 			}
