@@ -31,7 +31,6 @@ import javafx.scene.input.MouseEvent;
  *
  */
 public class BabbleController {
-	@FXML
 	private WordDictionary babbleDictionary;
 	@FXML
 	private PlayedWord babblePlayedWord;
@@ -43,6 +42,8 @@ public class BabbleController {
 	private IntegerProperty babbleScoreProperty;
 	@FXML
     private Button resetButton;
+	@FXML 
+	private Button playWordButton;
     @FXML
     private TextField scoreText;
     @FXML
@@ -148,6 +149,24 @@ public class BabbleController {
 		}
 	
 	
+	}
+	
+	public void checkValidWord() {
+		this.playWordButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent submitWord) {
+				if (BabbleController.this.babbleDictionary.isValidWord(BabbleController.this.babblePlayedWord.getHand())) {
+					BabbleController.this.babblePlayedWord.clear();
+				}
+				
+			}
+			
+		}
+				
+				
+				);
+		
 	}
 		
 		
