@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="255.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.babble.controllers.BabbleController">
    <children>
-      <TextField layoutX="202.0" layoutY="217.0" prefHeight="25.0" prefWidth="146.0" text="0" />
+      <TextField fx:id="scoreText" layoutX="202.0" layoutY="217.0" prefHeight="25.0" prefWidth="146.0" />
       <Button layoutX="202.0" layoutY="152.0" mnemonicParsing="false" text="Reset" />
       <Button fx:id="playWordButton" layoutX="283.0" layoutY="152.0" mnemonicParsing="false" onAction="#checkValidWord" text="Play Word" />
       <ListView fx:id="tilesListView" layoutX="47.0" layoutY="44.0" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="306.0" />

@@ -13,11 +13,13 @@ import edu.westga.cs.babble.model.TileGroup;
 import edu.westga.cs.babble.model.TileNotInGroupException;
 import edu.westga.cs.babble.model.TileRack;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.Callback;
 import javafx.event.EventHandler;
@@ -58,7 +60,7 @@ public class BabbleController {
 		this.babbleTileBag = new TileBag();
 		this.babbleTileRack = new TileRack();
 		this.resetButton = new Button();
-		this.scoreText = new TextField();
+		this.babbleScoreProperty = new SimpleIntegerProperty(0);
 		
 	}
 	
@@ -67,7 +69,11 @@ public class BabbleController {
 		this.addTilesToListView();
 		this.setUpListView();
 		this.setUpUsedWordListView();
-		
+		this.initializeScoreArea();		
+	}
+	
+	public void initializeScoreArea() {
+		this.scoreText.textProperty().bindBidirectional(this.babbleScoreProperty, new NumberStringConverter());
 	}
 	
 	public void setUpListView() {
@@ -133,7 +139,11 @@ public class BabbleController {
 		}
 	}
 		
-	
+	public void increaseScoreByNumber(int valueOfWord) {
+		int total = this.babbleScoreProperty.get();
+		total += valueOfWord;
+		this.babbleScoreProperty.set(total);
+	}
 	
 	public void addTilesToListView() {
 		int numberOfTiles = this.babbleTileRack.getNumberOfTilesNeeded();
@@ -157,7 +167,10 @@ public class BabbleController {
 			@Override
 			public void handle(MouseEvent submitWord) {
 				if (BabbleController.this.babbleDictionary.isValidWord(BabbleController.this.babblePlayedWord.getHand())) {
+					
+					BabbleController.this.increaseScoreByNumber(BabbleController.this.babblePlayedWord.getScore());
 					BabbleController.this.babblePlayedWord.clear();
+					BabbleController.this.addTilesToListView();
 				}
 				
 			}
