@@ -59,7 +59,6 @@ public class BabbleController {
 		this.babblePlayedWord = new PlayedWord();
 		this.babbleTileBag = new TileBag();
 		this.babbleTileRack = new TileRack();
-		this.resetButton = new Button();
 		this.babbleScoreProperty = new SimpleIntegerProperty(0);
 		
 	}
@@ -179,12 +178,27 @@ public class BabbleController {
 				
 				
 				);
-		
 	}
 		
-		
 	
+		public void resetPlayedWord() {
+			this.resetButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-	
-	
-}
+			@Override
+			public void handle(MouseEvent submitWord) {
+			for (Tile returnTile: BabbleController.this.babblePlayedWord.tiles()) {
+				BabbleController.this.babbleTileRack.append(returnTile);
+			}
+			BabbleController.this.babblePlayedWord.clear();
+			
+			}
+			
+			}
+			);
+			
+		}
+				
+				
+				
+	}
+		
