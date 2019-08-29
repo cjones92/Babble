@@ -84,7 +84,104 @@ class TestTileGroupRemove {
 		
 		assertEquals("HIJ", testTileGroup.getHand());
 		
+	}
+	
+	@Test 
+	public void canRemoveLastOfManyTilesFromTileGroup() {
+DummyTileGroup testTileGroup = new DummyTileGroup();
 		
+		Tile dummyTileOne = new Tile('G');
+		Tile dummyTileTwo = new Tile('H');
+		Tile dummyTileThree = new Tile('I');
+		Tile dummyTileFour = new Tile('J');
+		testTileGroup.append(dummyTileOne);
+		testTileGroup.append(dummyTileTwo);
+		testTileGroup.append(dummyTileThree);
+		testTileGroup.append(dummyTileFour);
+		
+		try {
+			testTileGroup.remove(dummyTileFour);
+		} catch (TileNotInGroupException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals("GHI", testTileGroup.getHand());
+		
+	}
+	
+	@Test
+	public void canRemoveMiddleOfManyTilesFromTileGroup() {
+DummyTileGroup testTileGroup = new DummyTileGroup();
+		
+		Tile dummyTileOne = new Tile('G');
+		Tile dummyTileTwo = new Tile('H');
+		Tile dummyTileThree = new Tile('I');
+		Tile dummyTileFour = new Tile('J');
+		testTileGroup.append(dummyTileOne);
+		testTileGroup.append(dummyTileTwo);
+		testTileGroup.append(dummyTileThree);
+		testTileGroup.append(dummyTileFour);
+		
+		try {
+			testTileGroup.remove(dummyTileTwo);
+		} catch (TileNotInGroupException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals("GIJ", testTileGroup.getHand());
+	}
+	
+	@Test
+	public void canRemoveMultipleTilesFromTileGroup() {
+		
+DummyTileGroup testTileGroup = new DummyTileGroup();
+		
+		Tile dummyTileOne = new Tile('G');
+		Tile dummyTileTwo = new Tile('H');
+		Tile dummyTileThree = new Tile('I');
+		Tile dummyTileFour = new Tile('J');
+		testTileGroup.append(dummyTileOne);
+		testTileGroup.append(dummyTileTwo);
+		testTileGroup.append(dummyTileThree);
+		testTileGroup.append(dummyTileFour);
+		
+		try {
+			testTileGroup.remove(dummyTileTwo);
+			testTileGroup.remove(dummyTileThree);
+		} catch (TileNotInGroupException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	}
+		assertEquals("GJ", testTileGroup.getHand());
+	}
+	
+	@Test
+	public void doesNotRemoveDuplicateTilesFromTileGroup() {
+		
+DummyTileGroup testTileGroup = new DummyTileGroup();
+		
+		Tile dummyTileOne = new Tile('G');
+		Tile dummyTileTwo = new Tile('H');
+		Tile dummyTileThree = new Tile('I');
+		Tile dummyTileFour = new Tile('J');
+		testTileGroup.append(dummyTileOne);
+		testTileGroup.append(dummyTileTwo);
+		testTileGroup.append(dummyTileThree);
+		testTileGroup.append(dummyTileFour);
+		
+		try {
+			testTileGroup.remove(dummyTileTwo);
+			testTileGroup.remove(dummyTileThree);
+		} catch (TileNotInGroupException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	}
+		Assertions.assertThrows(TileNotInGroupException.class, () -> {
+		    testTileGroup.remove(dummyTileThree); });
 	}
 
 }
