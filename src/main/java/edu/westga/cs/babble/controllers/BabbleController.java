@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import javafx.scene.control.cell.TextFieldListCell;
@@ -170,6 +172,11 @@ public class BabbleController {
 					BabbleController.this.increaseScoreByNumber(BabbleController.this.babblePlayedWord.getScore());
 					BabbleController.this.babblePlayedWord.clear();
 					BabbleController.this.addTilesToListView();
+				} else {
+					Alert notAWordAlert = new Alert(AlertType.ERROR);
+					notAWordAlert.setHeaderText("Word Error");
+					notAWordAlert.setContentText("The word you have submitted is not found in the game's dictionary.");
+					notAWordAlert.showAndWait();
 				}
 				
 			}
