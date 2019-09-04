@@ -183,6 +183,7 @@ public class BabbleController {
 	/**
 	 * This method checks to see if a word is valid
 	 */
+	@FXML
 	public void checkValidWord() {
 		this.playWordButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -212,6 +213,7 @@ public class BabbleController {
 	 * This method resets the word area where the user is trying to put
 	 * a word together
 	 */
+	@FXML
 	public void resetPlayedWord() {
 		this.resetButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
