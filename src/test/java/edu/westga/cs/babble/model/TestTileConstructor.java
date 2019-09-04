@@ -9,19 +9,31 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
+ * This class tests the TestTile constructor
  * @author Chris Jones
  * @version August 27, 2019
  *
  */
 class TestTileConstructor {
 
+	/**
+	 * This method tests to ensure that the constructor only accepts letters
+	 */
 	@Test
 	public void shouldNotAllowNonLetters() {
 		
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 		    new Tile('7'); });
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		    new Tile(' '); });
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		    new Tile('/'); });
 	}
 	
+	/**
+	 * This method tests to ensure that all of the one point tiles are 
+	 * created from both capital and lowercase entries
+	 */
 	@Test
 	public void shouldCreateOnePointTiles() {
 		Tile testTileE = new Tile('E');
@@ -87,6 +99,10 @@ class TestTileConstructor {
 		
 	}
 	
+	/**
+	 * This method tests to ensure that only the two-point letters are
+	 * created from both capital and lowercase letters
+	 */
 	@Test
 	public void shouldCreateTwoPointTiles() {
 		Tile testTileD = new Tile('D');
@@ -103,6 +119,10 @@ class TestTileConstructor {
 		assertEquals(2, testTileGg.getPointValue());
 	}
 	
+	/**
+	 * This method ensures that all of the three-point tiles are created
+	 * from both capital and lowercase letters
+	 */
 	@Test
 	public void shouldCreateThreePointTiles() {
 		Tile testTileB = new Tile('B');
@@ -131,6 +151,10 @@ class TestTileConstructor {
 		assertEquals(3, testTilePp.getPointValue());
 	}
 	
+	/**
+	 * This method ensures that all of the four-point tiles are created
+	 * from both capital and lowercase letters
+	 */
 	@Test
 	public void shouldCreateFourPointTiles() {
 		Tile testTileF = new Tile('F');
@@ -165,6 +189,10 @@ class TestTileConstructor {
 		assertEquals(4, testTileYy.getPointValue());
 	}
 	
+	/**
+	 * This method ensures that the five-point tiles are created 
+	 * from both capital and lowercase letters
+	 */
 	@Test
 	public void shouldCreateFivePointTiles() {
 		Tile testTileK = new Tile('K');
@@ -176,6 +204,10 @@ class TestTileConstructor {
 		
 	}
 	
+	/**
+	 * This method ensures that all of the eight-point tiles are created
+	 * from capital and lowercase letters
+	 */
 	@Test
 	public void shouldCreateEightPointTiles() {
 		Tile testTileJ = new Tile('J');
@@ -193,6 +225,10 @@ class TestTileConstructor {
 		
 	}
 	
+	/**
+	 * This method ensures that all of the ten-point tiles are created
+	 * from both capital and lowercase letters
+	 */
 	@Test
 	public void shouldCreateTenPointTiles() {
 		Tile testTileQ = new Tile('Q');

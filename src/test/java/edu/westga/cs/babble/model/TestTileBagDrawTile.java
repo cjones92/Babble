@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
+ * This class checks to make sure that the drawTile method of the TileBag class
+ * works correctly
  * @author Chris Jones
  * @version August 27, 2019
  *
@@ -24,44 +26,57 @@ import edu.westga.cs.babble.controllers.WordDictionary;
 class TestTileBagDrawTile {
 	private TileBag testTileBag;
 	
+	/**
+	 * This method sets up the instance variable for each method
+	 * @throws Exception
+	 */
 	@BeforeEach
 	public void setUp() throws Exception {
 		this.testTileBag = new TileBag();
 	}
 
+	/**
+	 * This method ensures that all of the tiles can be drawn without an issue
+	 * @throws EmptyTileBagException
+	 */
 	@Test
-	public void canDrawAllFiles() {
+	public void canDrawAllFiles() throws EmptyTileBagException {
 		
 		for (int index = 0; index < 98; index++) {
-			try {
-				this.testTileBag.drawTile();
-			} catch (EmptyTileBagException e) {
-				
-				e.printStackTrace();
-			}
+			
+		this.testTileBag.drawTile();
+			
 		}
 		
 		assertEquals(true, this.testTileBag.isEmpty());
 
 	}
 	
+	/**
+	 * This method ensures that the drawTile method does not allow any 
+	 * drawing of tiles after the max number of tiles has been reached
+	 * @throws EmptyTileBagException
+	 */
 	@Test
-	public void canNotDrawTooManyTiles() {
+	public void canNotDrawTooManyTiles() throws EmptyTileBagException {
 		
 		for (int index = 0; index < 98; index++) {
-			try {
-				this.testTileBag.drawTile();
-			} catch (EmptyTileBagException e) {
-				e.printStackTrace();
-			}
+			
+			this.testTileBag.drawTile();
+			
 		}
 		
 		Assertions.assertThrows(EmptyTileBagException.class, () -> {
 		    this.testTileBag.drawTile(); });		
 	}
 	
+	/**
+	 * This method ensures that all of the tiles are drawn out in the right
+	 * configuration
+	 * @throws EmptyTileBagException
+	 */
 	@Test 
-	public void hasProperTileDistribution() {
+	public void hasProperTileDistribution() throws EmptyTileBagException {
 
 		ArrayList<Character> tiles = new ArrayList<Character>();
 		ArrayList<Character> letters = new ArrayList<Character>( Arrays.asList('A','A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
@@ -71,13 +86,11 @@ class TestTileBagDrawTile {
 				'U', 'U', 'U', 'V', 'V', 'W', 'W', 'X', 'Y', 'Y', 'Z'));
 				
 				for (int index = 0; index < 98; index++) {
-			try {
+			
 				char pulledTile = this.testTileBag.drawTile().getLetter();
 				tiles.add(pulledTile);
 				
-			} catch (EmptyTileBagException e) {
-				e.printStackTrace();
-			}
+			
 		}
 		Collections.sort(tiles);
 		

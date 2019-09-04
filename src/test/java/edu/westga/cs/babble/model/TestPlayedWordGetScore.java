@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
+ * This class ensures that the getScore method of the PlayedWord class
+ * works correctly
  * @author Chris Jones
  * @version August 29, 2019
  *
@@ -18,28 +20,39 @@ import edu.westga.cs.babble.controllers.WordDictionary;
 class TestPlayedWordGetScore {
 	private PlayedWord testPlayedWord;
 	
+	/**
+	 * This method sets up the instance variable for each method
+	 * @throws Exception
+	 */
 	@BeforeEach
 	public void setUp() throws Exception {
 		this.testPlayedWord = new PlayedWord();
 	}
 
+	/**
+	 * This method ensures that an empty word received a score of 0
+	 */
 	@Test
 	public void emptyWordShouldHaveScoreOfZero() {
 		assertEquals(0, this.testPlayedWord.getScore());
 	}
 	
+	/**
+	 * This method ensures that a one-tile word is scored correctly 
+	 */
 	@Test
 	public void scoreAOneTileWord() {
 	
-		Tile testTileE = new Tile('E');
 		Tile testTileA = new Tile('A');
-		Tile testTileT = new Tile('T');
-		this.testPlayedWord.append(testTileE);
 		this.testPlayedWord.append(testTileA);
-		this.testPlayedWord.append(testTileT);
-		assertEquals(3, this.testPlayedWord.getScore());
+
+		assertEquals(1, this.testPlayedWord.getScore());
 	}
 	
+	/**
+	 * This method ensures that a word made up of differing tiles is scored
+	 * correctly
+	 */
 	@Test
 	public void scoreAWordWithMultipleDifferingTiles() {
 		
@@ -52,6 +65,10 @@ class TestPlayedWordGetScore {
 		assertEquals(6, this.testPlayedWord.getScore());
 	}
 	
+	/**
+	 * This method ensures that a word with duplicate tiles is 
+	 * scored correctly
+	 */
 	@Test
 	public void scoreAWordContainingDuplicateTiles() {
 		Tile testTileE = new Tile('E');

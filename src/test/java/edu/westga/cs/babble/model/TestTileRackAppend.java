@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
+ * This class tests to see that the append method in the TileRack class
+ * works correctly
  * @author Chris Jones
  * @version August 29, 2019
  *
@@ -20,11 +22,19 @@ class TestTileRackAppend {
 	
 	private TileRack testTileRack;
 	
+	/**
+	 * This method sets up the instance variable for each test method
+	 * @throws Exception
+	 */
 	@BeforeEach
 	public void setUp() throws Exception {
 		this.testTileRack = new TileRack();
 	}
 
+	/**
+	 * This method ensures that the append method does not append to a rack
+	 * that is already full
+	 */
 	@Test
 	void shouldNotAppendToFullRack() {
 		
