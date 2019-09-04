@@ -5,7 +5,10 @@ package edu.westga.cs.babble.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
  * @author Chris Jones	
@@ -13,42 +16,47 @@ import org.junit.jupiter.api.Test;
  *
  */
 class TestPlayedWordClear {
+	private PlayedWord testPlayedWord;
+	
+	@BeforeEach
+	public void setUp() throws Exception {
+		this.testPlayedWord = new PlayedWord();
+	}
 
 	@Test
 	public void shouldClearEmptyWord() {
-		PlayedWord testPlayedWord = new PlayedWord();
-		testPlayedWord.clear();
-		assertEquals(true, testPlayedWord.getHand().isEmpty());	
+		this.testPlayedWord.clear();
+		assertEquals(true, this.testPlayedWord.getHand().isEmpty());	
 	}
 	
 	@Test
 	public void shouldClearWordWithOneTile() {
-		PlayedWord testPlayedWord = new PlayedWord();
+	
 		Tile testTile = new Tile('A');
-		testPlayedWord.append(testTile);
-		testPlayedWord.clear();
+		this.testPlayedWord.append(testTile);
+		this.testPlayedWord.clear();
 		
-		assertEquals(true, testPlayedWord.getHand().isEmpty());
+		assertEquals(true, this.testPlayedWord.getHand().isEmpty());
 	}
 	
 	@Test
 	public void shouldClearWordWithManyTiles() {
-		PlayedWord testPlayedWord = new PlayedWord();
+		
 		Tile testTileA = new Tile('A');
 		Tile testTileP = new Tile('P');
 		Tile testTilePDublicate = new Tile('P');
 		Tile testTileL = new Tile('L');
 		Tile testTileE = new Tile('E');
 		
-		testPlayedWord.append(testTileA);
-		testPlayedWord.append(testTileP);
-		testPlayedWord.append(testTilePDublicate);
-		testPlayedWord.append(testTileL);
-		testPlayedWord.append(testTileE);
+		this.testPlayedWord.append(testTileA);
+		this.testPlayedWord.append(testTileP);
+		this.testPlayedWord.append(testTilePDublicate);
+		this.testPlayedWord.append(testTileL);
+		this.testPlayedWord.append(testTileE);
 		
-		testPlayedWord.clear();
+		this.testPlayedWord.clear();
 		
-		assertEquals(true, testPlayedWord.getHand().isEmpty());
+		assertEquals(true, this.testPlayedWord.getHand().isEmpty());
 	}
 
 }
