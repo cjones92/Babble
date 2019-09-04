@@ -56,9 +56,10 @@ public class BabbleController {
 	public BabbleController() {
 		this.babbleDictionary = new WordDictionary();
 		this.babblePlayedWord = new PlayedWord();
+		this.babbleScoreProperty = new SimpleIntegerProperty(0);
 		this.babbleTileBag = new TileBag();
 		this.babbleTileRack = new TileRack();
-		this.babbleScoreProperty = new SimpleIntegerProperty(0);
+		
 
 	}
 
@@ -67,10 +68,11 @@ public class BabbleController {
 	 */
 	@FXML
 	public void initialize() {
+		this.initializeScoreArea();
 		this.addTilesToListView();
 		this.setUpListView();
 		this.setUpUsedWordListView();
-		this.initializeScoreArea();
+		
 	}
 
 	/**
@@ -78,6 +80,7 @@ public class BabbleController {
 	 * between the score text and the integer property
 	 */
 	public void initializeScoreArea() {
+		
 		this.scoreText.textProperty().bindBidirectional(this.babbleScoreProperty, new NumberStringConverter());
 	}
 

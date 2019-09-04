@@ -27,6 +27,7 @@ public class Babble extends Application {
        primaryStage.setScene(scene);
        primaryStage.setTitle("Babble");
        primaryStage.show();
+       root.requestFocus();
     }
 
     /**
