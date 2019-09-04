@@ -6,7 +6,10 @@ package edu.westga.cs.babble.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
  * @author Chris Jones
@@ -14,174 +17,177 @@ import org.junit.jupiter.api.Test;
  *
  */
 class TestTileGroupRemove {
+	private TileGroup testTileGroup;
 
 	class DummyTileGroup extends TileGroup {
 	
 		
 	}
 	
+	@BeforeEach
+	public void setUp() throws Exception {
+		this.testTileGroup = new DummyTileGroup();
+	}
+	
 	@Test
 	public void shouldNotAllowNull() {
-		DummyTileGroup testTileGroup = new DummyTileGroup();
+		
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-		    testTileGroup.remove(null); });
+		    this.testTileGroup.remove(null); });
 	}
 	
 	@Test
 	public void canNotRemoveFromEmptyTileGroup() {
-		DummyTileGroup testTileGroup = new DummyTileGroup();
+		
 		Tile dummyTile = new Tile('G');
 		Assertions.assertThrows(TileNotInGroupException.class, () -> {
-		    testTileGroup.remove(dummyTile); });
+		    this.testTileGroup.remove(dummyTile); });
 	}
 	
 	@Test
 	public void canNotRemoveTileNotInTileGroup() {
-		DummyTileGroup testTileGroup = new DummyTileGroup();
+		
 		Tile dummyTile = new Tile('G');
 		
 		Tile dummyTileTwo = new Tile('H');
-		testTileGroup.append(dummyTileTwo);
+		this.testTileGroup.append(dummyTileTwo);
 		Assertions.assertThrows(TileNotInGroupException.class, () -> {
-		    testTileGroup.remove(dummyTile); });
+		    this.testTileGroup.remove(dummyTile); });
 		
 	}
 	
 	@Test
 	public void canRemoveOnlyTileInTileGroup() {
 		
-		DummyTileGroup testTileGroup = new DummyTileGroup();
+		
 		Tile dummyTile = new Tile('G');
-		testTileGroup.append(dummyTile);
+		this.testTileGroup.append(dummyTile);
 		try {
-			testTileGroup.remove(dummyTile);
+			this.testTileGroup.remove(dummyTile);
 		} catch (TileNotInGroupException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals("", testTileGroup.getHand());
+		assertEquals("", this.testTileGroup.getHand());
 	}
 	
 	@Test
 	public void canRemoveFirstOfManyTilesFromTileGroup() {
-		DummyTileGroup testTileGroup = new DummyTileGroup();
+		
 		
 		Tile dummyTileOne = new Tile('G');
 		Tile dummyTileTwo = new Tile('H');
 		Tile dummyTileThree = new Tile('I');
 		Tile dummyTileFour = new Tile('J');
-		testTileGroup.append(dummyTileOne);
-		testTileGroup.append(dummyTileTwo);
-		testTileGroup.append(dummyTileThree);
-		testTileGroup.append(dummyTileFour);
+		this.testTileGroup.append(dummyTileOne);
+		this.testTileGroup.append(dummyTileTwo);
+		this.testTileGroup.append(dummyTileThree);
+		this.testTileGroup.append(dummyTileFour);
 		
 		try {
-			testTileGroup.remove(dummyTileOne);
+			this.testTileGroup.remove(dummyTileOne);
 		} catch (TileNotInGroupException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		
-		assertEquals("HIJ", testTileGroup.getHand());
+		assertEquals("HIJ", this.testTileGroup.getHand());
 		
 	}
 	
 	@Test 
 	public void canRemoveLastOfManyTilesFromTileGroup() {
-DummyTileGroup testTileGroup = new DummyTileGroup();
+
 		
 		Tile dummyTileOne = new Tile('G');
 		Tile dummyTileTwo = new Tile('H');
 		Tile dummyTileThree = new Tile('I');
 		Tile dummyTileFour = new Tile('J');
-		testTileGroup.append(dummyTileOne);
-		testTileGroup.append(dummyTileTwo);
-		testTileGroup.append(dummyTileThree);
-		testTileGroup.append(dummyTileFour);
+		this.testTileGroup.append(dummyTileOne);
+		this.testTileGroup.append(dummyTileTwo);
+		this.testTileGroup.append(dummyTileThree);
+		this.testTileGroup.append(dummyTileFour);
 		
 		try {
-			testTileGroup.remove(dummyTileFour);
+			this.testTileGroup.remove(dummyTileFour);
 		} catch (TileNotInGroupException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		
-		assertEquals("GHI", testTileGroup.getHand());
+		assertEquals("GHI", this.testTileGroup.getHand());
 		
 	}
 	
 	@Test
 	public void canRemoveMiddleOfManyTilesFromTileGroup() {
-DummyTileGroup testTileGroup = new DummyTileGroup();
+
 		
 		Tile dummyTileOne = new Tile('G');
 		Tile dummyTileTwo = new Tile('H');
 		Tile dummyTileThree = new Tile('I');
 		Tile dummyTileFour = new Tile('J');
-		testTileGroup.append(dummyTileOne);
-		testTileGroup.append(dummyTileTwo);
-		testTileGroup.append(dummyTileThree);
-		testTileGroup.append(dummyTileFour);
+		this.testTileGroup.append(dummyTileOne);
+		this.testTileGroup.append(dummyTileTwo);
+		this.testTileGroup.append(dummyTileThree);
+		this.testTileGroup.append(dummyTileFour);
 		
 		try {
-			testTileGroup.remove(dummyTileTwo);
+			this.testTileGroup.remove(dummyTileTwo);
 		} catch (TileNotInGroupException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
-		assertEquals("GIJ", testTileGroup.getHand());
+		assertEquals("GIJ", this.testTileGroup.getHand());
 	}
 	
 	@Test
 	public void canRemoveMultipleTilesFromTileGroup() {
 		
-DummyTileGroup testTileGroup = new DummyTileGroup();
-		
+	
 		Tile dummyTileOne = new Tile('G');
 		Tile dummyTileTwo = new Tile('H');
 		Tile dummyTileThree = new Tile('I');
 		Tile dummyTileFour = new Tile('J');
-		testTileGroup.append(dummyTileOne);
-		testTileGroup.append(dummyTileTwo);
-		testTileGroup.append(dummyTileThree);
-		testTileGroup.append(dummyTileFour);
+		this.testTileGroup.append(dummyTileOne);
+		this.testTileGroup.append(dummyTileTwo);
+		this.testTileGroup.append(dummyTileThree);
+		this.testTileGroup.append(dummyTileFour);
 		
 		try {
-			testTileGroup.remove(dummyTileTwo);
-			testTileGroup.remove(dummyTileThree);
+			this.testTileGroup.remove(dummyTileTwo);
+			this.testTileGroup.remove(dummyTileThree);
 		} catch (TileNotInGroupException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		
 	}
-		assertEquals("GJ", testTileGroup.getHand());
+		assertEquals("GJ", this.testTileGroup.getHand());
 	}
 	
 	@Test
 	public void doesNotRemoveDuplicateTilesFromTileGroup() {
 		
-DummyTileGroup testTileGroup = new DummyTileGroup();
-		
+	
 		Tile dummyTileOne = new Tile('G');
 		Tile dummyTileTwo = new Tile('H');
 		Tile dummyTileThree = new Tile('I');
 		Tile dummyTileFour = new Tile('J');
-		testTileGroup.append(dummyTileOne);
-		testTileGroup.append(dummyTileTwo);
-		testTileGroup.append(dummyTileThree);
-		testTileGroup.append(dummyTileFour);
+		this.testTileGroup.append(dummyTileOne);
+		this.testTileGroup.append(dummyTileTwo);
+		this.testTileGroup.append(dummyTileThree);
+		this.testTileGroup.append(dummyTileFour);
 		
 		try {
-			testTileGroup.remove(dummyTileTwo);
-			testTileGroup.remove(dummyTileThree);
+			this.testTileGroup.remove(dummyTileTwo);
+			this.testTileGroup.remove(dummyTileThree);
 		} catch (TileNotInGroupException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		
 	}
 		Assertions.assertThrows(TileNotInGroupException.class, () -> {
-		    testTileGroup.remove(dummyTileThree); });
+		    this.testTileGroup.remove(dummyTileThree); });
 	}
 
 }
