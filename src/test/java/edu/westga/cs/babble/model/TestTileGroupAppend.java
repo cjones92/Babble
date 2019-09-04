@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
  * @author Chris Jones
@@ -19,76 +22,85 @@ import org.junit.jupiter.api.Test;
  */
 class TestTileGroupAppend {
 	
+	private TileGroup testTileGroup;
+	
 	class DummyTileGroup extends TileGroup {
 		
 	}
+	
+	@BeforeEach
+	public void setUp() throws Exception {
+		this.testTileGroup = new DummyTileGroup();
+	}
+	
+	
 
 	@Test
 	public void shouldNotAllowNull() {
-		TileGroup testTileGroup = new DummyTileGroup();
+	
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-		    testTileGroup.append(null); });
+		    this.testTileGroup.append(null); });
 	}
 	
 	@Test
 	public void EmptyGroupShouldBeEmpty() {
-		TileGroup testTileGroup = new DummyTileGroup();
-		assertEquals(0, testTileGroup.tiles().size());
+		
+		assertEquals(0, this.testTileGroup.tiles().size());
 	}
 	
 	@Test
 	public void shouldHaveOneTileInTileGroup() {
-		TileGroup testTileGroup = new DummyTileGroup();
+		
 		Tile dummyTile = new Tile('G');
-		testTileGroup.append(dummyTile);
-		assertEquals(1, testTileGroup.tiles().size());
-		assertEquals('G', testTileGroup.tiles().get(0).getLetter());
+		this.testTileGroup.append(dummyTile);
+		assertEquals(1, this.testTileGroup.tiles().size());
+		assertEquals('G', this.testTileGroup.tiles().get(0).getLetter());
 	}
 	
 	@Test
 	public void shouldHaveManyTilesInTileGroup() {
-		TileGroup testTileGroup = new DummyTileGroup();
+		
 		Tile dummyTileOne = new Tile('G');
 		Tile dummyTileTwo = new Tile('H');
 		Tile dummyTileThree = new Tile('I');
 		Tile dummyTileFour = new Tile('J');
-		testTileGroup.append(dummyTileOne);
-		testTileGroup.append(dummyTileTwo);
-		testTileGroup.append(dummyTileThree);
-		testTileGroup.append(dummyTileFour);
-		assertEquals('G', testTileGroup.tiles().get(0).getLetter());
-		assertEquals('H', testTileGroup.tiles().get(1).getLetter());
-		assertEquals('I', testTileGroup.tiles().get(2).getLetter());
-		assertEquals('J', testTileGroup.tiles().get(3).getLetter());
+		this.testTileGroup.append(dummyTileOne);
+		this.testTileGroup.append(dummyTileTwo);
+		this.testTileGroup.append(dummyTileThree);
+		this.testTileGroup.append(dummyTileFour);
+		assertEquals('G', this.testTileGroup.tiles().get(0).getLetter());
+		assertEquals('H', this.testTileGroup.tiles().get(1).getLetter());
+		assertEquals('I', this.testTileGroup.tiles().get(2).getLetter());
+		assertEquals('J', this.testTileGroup.tiles().get(3).getLetter());
 	}
 	
 	@Test
 	public void shouldHaveManyTilesIncludingDuplicatesInTileGroup() {
-		TileGroup testTileGroup = new DummyTileGroup();
+		
 		Tile dummyTileOne = new Tile('G');
 		Tile dummyTileTwo = new Tile('H');
 		Tile dummyTileThree = new Tile('I');
 		Tile dummyTileFour = new Tile('J');
 		Tile dummyTileFive = new Tile('I');
-		testTileGroup.append(dummyTileOne);
-		testTileGroup.append(dummyTileTwo);
-		testTileGroup.append(dummyTileThree);
-		testTileGroup.append(dummyTileFour);
-		testTileGroup.append(dummyTileFive);
-		assertEquals('G', testTileGroup.tiles().get(0).getLetter());
-		assertEquals('H', testTileGroup.tiles().get(1).getLetter());
-		assertEquals('I', testTileGroup.tiles().get(2).getLetter());
-		assertEquals('J', testTileGroup.tiles().get(3).getLetter());
-		assertEquals('I', testTileGroup.tiles().get(4).getLetter());
+		this.testTileGroup.append(dummyTileOne);
+		this.testTileGroup.append(dummyTileTwo);
+		this.testTileGroup.append(dummyTileThree);
+		this.testTileGroup.append(dummyTileFour);
+		this.testTileGroup.append(dummyTileFive);
+		assertEquals('G', this.testTileGroup.tiles().get(0).getLetter());
+		assertEquals('H', this.testTileGroup.tiles().get(1).getLetter());
+		assertEquals('I', this.testTileGroup.tiles().get(2).getLetter());
+		assertEquals('J', this.testTileGroup.tiles().get(3).getLetter());
+		assertEquals('I', this.testTileGroup.tiles().get(4).getLetter());
 	}
 	
 	@Test
 	public void canNotAddSameTileTwice() {
-		TileGroup testTileGroup = new DummyTileGroup();
+		
 		Tile dummyTileOne = new Tile('G');
-		testTileGroup.append(dummyTileOne);
+		this.testTileGroup.append(dummyTileOne);
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-		    testTileGroup.append(dummyTileOne); });
+		    this.testTileGroup.append(dummyTileOne); });
 		
 	}
 
