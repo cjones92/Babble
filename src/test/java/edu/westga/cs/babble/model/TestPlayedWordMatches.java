@@ -97,8 +97,7 @@ class TestPlayedWordMatches {
 	}
 	
 	@Test
-	public void shouldNotAllowNull() {
-		
+	public void shouldNotAllowNull() {		
 		
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 		    this.testPlayedWord.matches(null); });
