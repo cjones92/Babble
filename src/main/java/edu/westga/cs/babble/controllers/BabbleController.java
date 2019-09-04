@@ -1,15 +1,11 @@
-/**
- * 
- */
+
 package edu.westga.cs.babble.controllers;
 
-import java.text.Format;
 import javafx.fxml.*;
 import edu.westga.cs.babble.model.EmptyTileBagException;
 import edu.westga.cs.babble.model.PlayedWord;
 import edu.westga.cs.babble.model.Tile;
 import edu.westga.cs.babble.model.TileBag;
-import edu.westga.cs.babble.model.TileGroup;
 import edu.westga.cs.babble.model.TileNotInGroupException;
 import edu.westga.cs.babble.model.TileRack;
 import javafx.beans.property.IntegerProperty;
@@ -27,11 +23,10 @@ import javafx.util.Callback;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-
 /**
- * @author Chris Jones
- * @version August 20, 2019
  * Controls behavior of the Babble GUI
+ * @author Chris Jones
+ * @version August 20, 2019 
  *
  */
 public class BabbleController {
@@ -45,130 +40,159 @@ public class BabbleController {
 	@FXML
 	private IntegerProperty babbleScoreProperty;
 	@FXML
-    private Button resetButton;
-	@FXML 
+	private Button resetButton;
+	@FXML
 	private Button playWordButton;
-    @FXML
-    private TextField scoreText;
-    @FXML
-    private ListView<Tile> tilesListView;
-    @FXML 
-    private ListView<Tile> usedWordListView;
-	
-	
+	@FXML
+	private TextField scoreText;
+	@FXML
+	private ListView<Tile> tilesListView;
+	@FXML
+	private ListView<Tile> usedWordListView;
+
+	/**
+	 * Constructor for class
+	 */
 	public BabbleController() {
 		this.babbleDictionary = new WordDictionary();
 		this.babblePlayedWord = new PlayedWord();
 		this.babbleTileBag = new TileBag();
 		this.babbleTileRack = new TileRack();
 		this.babbleScoreProperty = new SimpleIntegerProperty(0);
-		
+
 	}
-	
-	@FXML 
+
+	/**
+	 * This class calls the methods for setting up the GUI
+	 */
+	@FXML
 	public void initialize() {
 		this.addTilesToListView();
 		this.setUpListView();
 		this.setUpUsedWordListView();
-		this.initializeScoreArea();		
+		this.initializeScoreArea();
 	}
-	
+
+	/**
+	 * This method initializes the score area and sets up the binding
+	 * between the score text and the integer property
+	 */
 	public void initializeScoreArea() {
 		this.scoreText.textProperty().bindBidirectional(this.babbleScoreProperty, new NumberStringConverter());
 	}
-	
+
+	/**
+	 * This method creates the ListView for the letters the user uses to
+	 * play
+	 */
 	public void setUpListView() {
 		this.tilesListView.setItems(this.babbleTileRack.tiles());
 		System.out.println(this.babbleTileRack.tiles());
 		this.tilesListView.setCellFactory(new CellFactory());
 		this.tilesListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent letterSelection) {
-				Tile chosenTile = (Tile)BabbleController.this.tilesListView.getSelectionModel().getSelectedItem();
+				Tile chosenTile = (Tile) BabbleController.this.tilesListView.getSelectionModel().getSelectedItem();
 				try {
 					BabbleController.this.babbleTileRack.remove(chosenTile);
 					BabbleController.this.babblePlayedWord.append(chosenTile);
-				} catch (TileNotInGroupException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (TileNotInGroupException exceptionForTiles) {
+					
+					exceptionForTiles.printStackTrace();
 				}
-				
-				
+
 			}
 		}
-				
-				);
-		
+
+		);
+
 	}
-	
+
+	/**
+	 * This method creates the ListView for where the user puts together
+	 * words
+	 */
 	public void setUpUsedWordListView() {
 		this.usedWordListView.setItems(this.babblePlayedWord.tiles());
 		this.usedWordListView.setCellFactory(new CellFactory());
-		
+
 	}
-	
-	class CellFactory implements Callback<ListView<Tile>,ListCell<Tile>>
-	{
+
+	/**
+	 * This class creates CellFactory objects to handle the tiles for the
+	 * game
+	 * @author Chris Jones
+	 * @version August 21, 2019
+	 *
+	 */
+	class CellFactory implements Callback<ListView<Tile>, ListCell<Tile>> {
 		CellFactory() {
 		}
 
 		@Override
 		public ListCell<Tile> call(ListView<Tile> arg0) {
-			
-			 final TextFieldListCell tilesForGame = new TextFieldListCell();
-		      tilesForGame.setConverter(new StringConverter<Tile>()
-		      {
-		    	
-		    	@Override
-		        public String toString(Tile letter)
-		        {
-		          String lettersOfText = letter.getLetter() + "";
-		          tilesForGame.setText(lettersOfText);
-		          System.out.println(lettersOfText);
-		          return lettersOfText ;
-		          
-		        }
 
-		    	@Override
-		        public Tile fromString(String tileString)
-		        {
-		          return null;
-		        }
-		      });
-			
-			
-		      return tilesForGame;
+			final TextFieldListCell<Tile> tilesForGame = new TextFieldListCell<Tile>();
+			tilesForGame.setConverter(new StringConverter<Tile>() {
+
+				@Override
+				public String toString(Tile letter) {
+					String lettersOfText = letter.getLetter() + "";
+					tilesForGame.setText(lettersOfText);
+					System.out.println(lettersOfText);
+					return lettersOfText;
+
+				}
+
+				@Override
+				public Tile fromString(String tileString) {
+					return null;
+				}
+			});
+
+			return tilesForGame;
 		}
 	}
-		
+
+	/**
+	 * This method increases the user's score by the amount the played
+	 * word is worth
+	 * @param valueOfWord value of played word
+	 */
 	public void increaseScoreByNumber(int valueOfWord) {
 		int total = this.babbleScoreProperty.get();
 		total += valueOfWord;
 		this.babbleScoreProperty.set(total);
 	}
-	
+
+	/**
+	 * This method adds tiles to the game
+	 */
 	public void addTilesToListView() {
 		int numberOfTiles = this.babbleTileRack.getNumberOfTilesNeeded();
-		for (int index = 0; index < numberOfTiles; index++) {				
+		for (int index = 0; index < numberOfTiles; index++) {
 			Tile tile = null;
 			try {
 				tile = this.babbleTileBag.drawTile();
-			} catch (EmptyTileBagException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (EmptyTileBagException exceptionForTiles) {
+
+				exceptionForTiles.printStackTrace();
 			}
 			this.babbleTileRack.append(tile);
 		}
-	
-	
+
 	}
-	
+
+	/**
+	 * This method checks to see if a word is valid
+	 */
 	public void checkValidWord() {
 		this.playWordButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent submitWord) {
-				if (BabbleController.this.babbleDictionary.isValidWord(BabbleController.this.babblePlayedWord.getHand())) {
-					
+				if (BabbleController.this.babbleDictionary
+						.isValidWord(BabbleController.this.babblePlayedWord.getHand())) {
+
 					BabbleController.this.increaseScoreByNumber(BabbleController.this.babblePlayedWord.getScore());
 					BabbleController.this.babblePlayedWord.clear();
 					BabbleController.this.addTilesToListView();
@@ -178,34 +202,32 @@ public class BabbleController {
 					notAWordAlert.setContentText("The word you have submitted is not found in the game's dictionary.");
 					notAWordAlert.showAndWait();
 				}
-				
+
 			}
-			
+
 		}
-				
-				
-				);
+
+		);
 	}
-		
-	
-		public void resetPlayedWord() {
-			this.resetButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+	/**
+	 * This method resets the word area where the user is trying to put
+	 * a word together
+	 */
+	public void resetPlayedWord() {
+		this.resetButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent submitWord) {
-			for (Tile returnTile: BabbleController.this.babblePlayedWord.tiles()) {
-				BabbleController.this.babbleTileRack.append(returnTile);
+				for (Tile returnTile : BabbleController.this.babblePlayedWord.tiles()) {
+					BabbleController.this.babbleTileRack.append(returnTile);
+				}
+				BabbleController.this.babblePlayedWord.clear();
+
 			}
-			BabbleController.this.babblePlayedWord.clear();
-			
-			}
-			
-			}
-			);
-			
-		}
-				
-				
-				
+
+		});
+
 	}
-		
+
+}
