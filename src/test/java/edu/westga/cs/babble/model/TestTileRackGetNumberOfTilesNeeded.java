@@ -5,7 +5,10 @@ package edu.westga.cs.babble.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
  * @author Chris Jones
@@ -13,42 +16,47 @@ import org.junit.jupiter.api.Test;
  *
  */
 class TestTileRackGetNumberOfTilesNeeded {
+	private TileRack testTileRack;
+	
+	@BeforeEach
+	public void setUp() throws Exception {
+		this.testTileRack = new TileRack();
+	}
 
 	@Test
 	public void emptyTileRackShouldNeedMaxSizeNumberOfTiles() {
-		TileRack testTileRack = new TileRack();
-		assertEquals(7, testTileRack.getNumberOfTilesNeeded());
+
+		assertEquals(7, this.testTileRack.getNumberOfTilesNeeded());
 	}
 	
 	@Test 
 	public void tileRackWithOneTileShouldNeedMaxSizeMinusOneTiles() {
-		TileRack testTileRack = new TileRack();
+		
 		Tile firstTile = new Tile('A');
-		testTileRack.append(firstTile);
-		assertEquals(6, testTileRack.getNumberOfTilesNeeded());
+		this.testTileRack.append(firstTile);
+		assertEquals(6, this.testTileRack.getNumberOfTilesNeeded());
 		
 	}
 	
 	@Test 
 	public void tileRackWithSeveralTilesShouldNeedSomeTiles() {
-		TileRack testTileRack = new TileRack();
+	
 		Tile firstTile = new Tile('A');
 		Tile secondTile = new Tile('B');
 		Tile thirdTile = new Tile('C');
 		Tile fourthTile = new Tile('D');
 		Tile fifthTile = new Tile('E');
-		testTileRack.append(firstTile);
-		testTileRack.append(secondTile);
-		testTileRack.append(thirdTile);
-		testTileRack.append(fourthTile);
-		testTileRack.append(fifthTile);
-		assertEquals(2, testTileRack.getNumberOfTilesNeeded());
+		this.testTileRack.append(firstTile);
+		this.testTileRack.append(secondTile);
+		this.testTileRack.append(thirdTile);
+		this.testTileRack.append(fourthTile);
+		this.testTileRack.append(fifthTile);
+		assertEquals(2, this.testTileRack.getNumberOfTilesNeeded());
 		
 	}
 	
 	@Test
 	public void fullRackNeedsZeroFiles() {
-		TileRack testTileRack = new TileRack();
 		assertEquals(7, testTileRack.getNumberOfTilesNeeded());
 		Tile firstTile = new Tile('A');
 		Tile secondTile = new Tile('B');
@@ -58,14 +66,14 @@ class TestTileRackGetNumberOfTilesNeeded {
 		Tile sixthTile = new Tile('F');
 		Tile seventhTile = new Tile('G');
 		
-		testTileRack.append(firstTile);
-		testTileRack.append(secondTile);
-		testTileRack.append(thirdTile);
-		testTileRack.append(fourthTile);
-		testTileRack.append(fifthTile);
-		testTileRack.append(sixthTile);
-		testTileRack.append(seventhTile);
+		this.testTileRack.append(firstTile);
+		this.testTileRack.append(secondTile);
+		this.testTileRack.append(thirdTile);
+		this.testTileRack.append(fourthTile);
+		this.testTileRack.append(fifthTile);
+		this.testTileRack.append(sixthTile);
+		this.testTileRack.append(seventhTile);
 		
-		assertEquals(0, testTileRack.getNumberOfTilesNeeded());
+		assertEquals(0, this.testTileRack.getNumberOfTilesNeeded());
 	}
 }
