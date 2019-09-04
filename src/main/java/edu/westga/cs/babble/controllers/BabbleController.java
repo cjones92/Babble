@@ -87,7 +87,6 @@ public class BabbleController {
 	 */
 	public void setUpListView() {
 		this.tilesListView.setItems(this.babbleTileRack.tiles());
-		System.out.println(this.babbleTileRack.tiles());
 		this.tilesListView.setCellFactory(new CellFactory());
 		this.tilesListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent letterSelection) {
@@ -137,8 +136,7 @@ public class BabbleController {
 				@Override
 				public String toString(Tile letter) {
 					String lettersOfText = letter.getLetter() + "";
-					tilesForGame.setText(lettersOfText);
-					System.out.println(lettersOfText);
+					tilesForGame.setAccessibleText(lettersOfText);
 					return lettersOfText;
 
 				}
