@@ -3,13 +3,11 @@
  */
 package edu.westga.cs.babble.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
  * This class tests to see that the append method in the TileRack class
@@ -46,7 +44,7 @@ class TestTileRackAppend {
 		this.testTileRack.append(new Tile('F'));
 		this.testTileRack.append(new Tile('G'));
 		
-		Assertions.assertThrows(TileRackFullException.class, () -> {
+		assertThrows(TileRackFullException.class, () -> {
 		    this.testTileRack.append(new Tile('H')); });
 	}
 

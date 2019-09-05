@@ -3,13 +3,12 @@
  */
 package edu.westga.cs.babble.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
  * This class ensures the TestTile class's remove method works properly
@@ -49,7 +48,7 @@ class TestTileGroupRemove {
 	@Test
 	public void shouldNotAllowNull() {
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 		    this.testTileGroup.remove(null); });
 	}
 	
@@ -61,7 +60,7 @@ class TestTileGroupRemove {
 	public void canNotRemoveFromEmptyTileGroup() {
 		
 		Tile dummyTile = new Tile('G');
-		Assertions.assertThrows(TileNotInGroupException.class, () -> {
+		assertThrows(TileNotInGroupException.class, () -> {
 		    this.testTileGroup.remove(dummyTile); });
 	}
 	
@@ -75,7 +74,7 @@ class TestTileGroupRemove {
 		Tile dummyTile = new Tile('G');
 		Tile dummyTileTwo = new Tile('H');
 		this.testTileGroup.append(dummyTileTwo);
-		Assertions.assertThrows(TileNotInGroupException.class, () -> {
+		assertThrows(TileNotInGroupException.class, () -> {
 		    this.testTileGroup.remove(dummyTile); });
 		
 	}

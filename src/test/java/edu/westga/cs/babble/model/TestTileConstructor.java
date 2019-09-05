@@ -3,9 +3,9 @@
  */
 package edu.westga.cs.babble.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -22,11 +22,11 @@ class TestTileConstructor {
 	@Test
 	public void shouldNotAllowNonLetters() {
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 		    new Tile('7'); });
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 		    new Tile(' '); });
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 		    new Tile('/'); });
 	}
 	

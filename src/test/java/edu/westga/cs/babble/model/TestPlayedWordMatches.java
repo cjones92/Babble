@@ -3,13 +3,11 @@
  */
 package edu.westga.cs.babble.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
  * This class ensures that the matches method of the PlayedWord class

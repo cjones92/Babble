@@ -3,18 +3,15 @@
  */
 package edu.westga.cs.babble.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.babble.controllers.WordDictionary;
 
 /**
  * This class checks to make sure that the drawTile method of the TileBag class
@@ -66,7 +63,7 @@ class TestTileBagDrawTile {
 			
 		}
 		
-		Assertions.assertThrows(EmptyTileBagException.class, () -> {
+		assertThrows(EmptyTileBagException.class, () -> {
 		    this.testTileBag.drawTile(); });		
 	}
 	

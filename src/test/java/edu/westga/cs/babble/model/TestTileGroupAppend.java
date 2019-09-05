@@ -6,14 +6,10 @@ package edu.westga.cs.babble.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.babble.controllers.WordDictionary;
+
 
 /**
  * This class ensures that the TestTile class's append method works
@@ -53,7 +49,7 @@ class TestTileGroupAppend {
 	@Test
 	public void shouldNotAllowNull() {
 	
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 		    this.testTileGroup.append(null); });
 	}
 	
@@ -124,7 +120,7 @@ class TestTileGroupAppend {
 		
 		Tile dummyTileOne = new Tile('G');
 		this.testTileGroup.append(dummyTileOne);
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 		    this.testTileGroup.append(dummyTileOne); });
 		
 	}
