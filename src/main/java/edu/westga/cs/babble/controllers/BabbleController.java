@@ -60,7 +60,6 @@ public class BabbleController {
 		this.babbleTileBag = new TileBag();
 		this.babbleTileRack = new TileRack();
 		
-
 	}
 
 	/**
@@ -116,6 +115,22 @@ public class BabbleController {
 	public void setUpUsedWordListView() {
 		this.usedWordListView.setItems(this.babblePlayedWord.tiles());
 		this.usedWordListView.setCellFactory(new CellFactory());
+		this.usedWordListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent letterSelection) {
+				Tile chosenTile = (Tile) BabbleController.this.usedWordListView.getSelectionModel().getSelectedItem();
+				
+				try {
+					BabbleController.this.babblePlayedWord.remove(chosenTile);
+					BabbleController.this.babbleTileRack.append(chosenTile);
+				} catch (TileNotInGroupException exceptionForTiles) {
+					
+					exceptionForTiles.printStackTrace();
+				}
+
+			}
+		}
+
+		);
 
 	}
 
