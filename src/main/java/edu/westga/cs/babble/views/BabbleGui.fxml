@@ -17,7 +17,7 @@
       <Button fx:id="playWordButton" layoutX="283.0" layoutY="152.0" mnemonicParsing="false" onAction="#checkValidWord" text="Play Word" />
       <ListView fx:id="tilesListView" layoutX="47.0" layoutY="44.0" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="306.0">
          <tooltip>
-            <Tooltip fx:id="randomLetterToolTip" text="These letters are the ones you select from to make your words." />
+            <Tooltip text="These letters are the ones you select from to make your words." />
          </tooltip></ListView>
       <ListView fx:id="wordListView" layoutX="50.0" layoutY="88.0" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="306.0">
          <tooltip>
