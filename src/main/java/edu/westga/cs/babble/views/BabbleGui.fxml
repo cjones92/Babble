@@ -19,7 +19,7 @@
          <tooltip>
             <Tooltip fx:id="randomLetterToolTip" text="These letters are the ones you select from to make your words." />
          </tooltip></ListView>
-      <ListView fx:id="usedWordListView" layoutX="50.0" layoutY="88.0" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="306.0">
+      <ListView fx:id="wordListView" layoutX="50.0" layoutY="88.0" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="306.0">
          <tooltip>
             <Tooltip text="This is where you try to create a word from the letters you have selected." />
          </tooltip></ListView>
