@@ -25,7 +25,7 @@ import javafx.scene.input.MouseEvent;
 
 
 /**
- * Controls behavior of the Babble GUI
+ * This class controls behavior of the Babble GUI
  * 
  * @author Chris Jones
  * @version August 20, 2019
