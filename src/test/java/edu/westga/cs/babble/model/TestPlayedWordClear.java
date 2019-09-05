@@ -44,8 +44,7 @@ class TestPlayedWordClear {
 	@Test
 	public void shouldClearWordWithOneTile() {
 	
-		Tile testTile = new Tile('A');
-		this.testPlayedWord.append(testTile);
+		this.testPlayedWord.append(new Tile('A'));
 		this.testPlayedWord.clear();
 		
 		assertEquals(true, this.testPlayedWord.getHand().isEmpty());
@@ -57,17 +56,11 @@ class TestPlayedWordClear {
 	@Test
 	public void shouldClearWordWithManyTiles() {
 		
-		Tile testTileA = new Tile('A');
-		Tile testTileP = new Tile('P');
-		Tile testTilePDublicate = new Tile('P');
-		Tile testTileL = new Tile('L');
-		Tile testTileE = new Tile('E');
-		
-		this.testPlayedWord.append(testTileA);
-		this.testPlayedWord.append(testTileP);
-		this.testPlayedWord.append(testTilePDublicate);
-		this.testPlayedWord.append(testTileL);
-		this.testPlayedWord.append(testTileE);
+		this.testPlayedWord.append(new Tile('A'));
+		this.testPlayedWord.append(new Tile('P'));
+		this.testPlayedWord.append(new Tile('P'));
+		this.testPlayedWord.append(new Tile('L'));
+		this.testPlayedWord.append(new Tile('E'));
 		
 		this.testPlayedWord.clear();
 		

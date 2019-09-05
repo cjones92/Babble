@@ -36,12 +36,9 @@ class TestPlayedWordMatches {
 	@Test
 	public void hasTilesForAMultipleLetterWord()  {
 		
-		Tile testTileE = new Tile('E');
-		Tile testTileA = new Tile('A');
-		Tile testTileT = new Tile('T');
-		this.testPlayedWord.append(testTileE);
-		this.testPlayedWord.append(testTileA);
-		this.testPlayedWord.append(testTileT);
+		this.testPlayedWord.append(new Tile('E'));
+		this.testPlayedWord.append(new Tile('A'));
+		this.testPlayedWord.append(new Tile('T'));
 		
 		assertEquals(true, this.testPlayedWord.matches("EAT"));
 	}
@@ -81,12 +78,9 @@ class TestPlayedWordMatches {
 	 */
 	@Test
 	public void cannotMatchWordIfInsufficientTiles() {
-		
-		Tile testTileE = new Tile('E');
-		Tile testTileG = new Tile('G');
-		
-		this.testPlayedWord.append(testTileE);
-		this.testPlayedWord.append(testTileG);
+
+		this.testPlayedWord.append(new Tile('E'));
+		this.testPlayedWord.append(new Tile('G'));
 		assertEquals(false, this.testPlayedWord.matches("EGG"));
 	}
 	
@@ -97,12 +91,9 @@ class TestPlayedWordMatches {
 	@Test
 	public void canMatchWordWithDuplicateLetters() {
 
-		Tile testTileE = new Tile('E');
-		Tile testTileG = new Tile('G');
-		Tile testTileGDuplicate = new Tile('G');
-		this.testPlayedWord.append(testTileE);
-		this.testPlayedWord.append(testTileG);
-		this.testPlayedWord.append(testTileGDuplicate);
+		this.testPlayedWord.append(new Tile('E'));
+		this.testPlayedWord.append(new Tile('G'));
+		this.testPlayedWord.append(new Tile('G'));
 		
 		assertEquals(true, this.testPlayedWord.matches("EGG"));
 	}

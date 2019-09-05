@@ -59,16 +59,11 @@ class TestTileRackGetNumberOfTilesNeeded {
 	@Test 
 	public void tileRackWithSeveralTilesShouldNeedSomeTiles() {
 	
-		Tile firstTile = new Tile('A');
-		Tile secondTile = new Tile('B');
-		Tile thirdTile = new Tile('C');
-		Tile fourthTile = new Tile('D');
-		Tile fifthTile = new Tile('E');
-		this.testTileRack.append(firstTile);
-		this.testTileRack.append(secondTile);
-		this.testTileRack.append(thirdTile);
-		this.testTileRack.append(fourthTile);
-		this.testTileRack.append(fifthTile);
+		this.testTileRack.append(new Tile('A'));
+		this.testTileRack.append(new Tile('B'));
+		this.testTileRack.append(new Tile('C'));
+		this.testTileRack.append(new Tile('D'));
+		this.testTileRack.append(new Tile('E'));
 		assertEquals(2, this.testTileRack.getNumberOfTilesNeeded());
 		
 	}
@@ -80,21 +75,14 @@ class TestTileRackGetNumberOfTilesNeeded {
 	@Test
 	public void fullRackNeedsZeroFiles() {
 		assertEquals(7, testTileRack.getNumberOfTilesNeeded());
-		Tile firstTile = new Tile('A');
-		Tile secondTile = new Tile('B');
-		Tile thirdTile = new Tile('C');
-		Tile fourthTile = new Tile('D');
-		Tile fifthTile = new Tile('E');
-		Tile sixthTile = new Tile('F');
-		Tile seventhTile = new Tile('G');
-		
-		this.testTileRack.append(firstTile);
-		this.testTileRack.append(secondTile);
-		this.testTileRack.append(thirdTile);
-		this.testTileRack.append(fourthTile);
-		this.testTileRack.append(fifthTile);
-		this.testTileRack.append(sixthTile);
-		this.testTileRack.append(seventhTile);
+				
+		this.testTileRack.append(new Tile('A'));
+		this.testTileRack.append(new Tile('B'));
+		this.testTileRack.append(new Tile('C'));
+		this.testTileRack.append(new Tile('D'));
+		this.testTileRack.append(new Tile('E'));
+		this.testTileRack.append(new Tile('F'));
+		this.testTileRack.append(new Tile('G'));
 		
 		assertEquals(0, this.testTileRack.getNumberOfTilesNeeded());
 	}

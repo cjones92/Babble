@@ -56,12 +56,9 @@ class TestPlayedWordGetScore {
 	@Test
 	public void scoreAWordWithMultipleDifferingTiles() {
 		
-		Tile testTileB = new Tile('B');
-		Tile testTileO = new Tile('O');
-		Tile testTileG = new Tile('G');
-		this.testPlayedWord.append(testTileB);
-		this.testPlayedWord.append(testTileO);
-		this.testPlayedWord.append(testTileG);
+		this.testPlayedWord.append(new Tile('B'));
+		this.testPlayedWord.append(new Tile('O'));
+		this.testPlayedWord.append(new Tile('G'));
 		assertEquals(6, this.testPlayedWord.getScore());
 	}
 	
@@ -71,12 +68,10 @@ class TestPlayedWordGetScore {
 	 */
 	@Test
 	public void scoreAWordContainingDuplicateTiles() {
-		Tile testTileE = new Tile('E');
-		Tile testTileG = new Tile('G');
-		Tile testTileGDuplicate = new Tile('G');
-		this.testPlayedWord.append(testTileE);
-		this.testPlayedWord.append(testTileG);
-		this.testPlayedWord.append(testTileGDuplicate);
+		
+		this.testPlayedWord.append(new Tile('E'));
+		this.testPlayedWord.append(new Tile('G'));
+		this.testPlayedWord.append(new Tile('G'));
 		
 		assertEquals(5, this.testPlayedWord.getScore());
 	}

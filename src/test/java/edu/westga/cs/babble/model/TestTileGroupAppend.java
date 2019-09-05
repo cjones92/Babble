@@ -86,14 +86,10 @@ class TestTileGroupAppend {
 	@Test
 	public void shouldHaveManyTilesInTileGroup() {
 		
-		Tile dummyTileOne = new Tile('G');
-		Tile dummyTileTwo = new Tile('H');
-		Tile dummyTileThree = new Tile('I');
-		Tile dummyTileFour = new Tile('J');
-		this.testTileGroup.append(dummyTileOne);
-		this.testTileGroup.append(dummyTileTwo);
-		this.testTileGroup.append(dummyTileThree);
-		this.testTileGroup.append(dummyTileFour);
+		this.testTileGroup.append(new Tile('G'));
+		this.testTileGroup.append(new Tile('H'));
+		this.testTileGroup.append(new Tile('I'));
+		this.testTileGroup.append(new Tile('J'));
 		assertEquals('G', this.testTileGroup.tiles().get(0).getLetter());
 		assertEquals('H', this.testTileGroup.tiles().get(1).getLetter());
 		assertEquals('I', this.testTileGroup.tiles().get(2).getLetter());
@@ -107,16 +103,12 @@ class TestTileGroupAppend {
 	@Test
 	public void shouldHaveManyTilesIncludingDuplicatesInTileGroup() {
 		
-		Tile dummyTileOne = new Tile('G');
-		Tile dummyTileTwo = new Tile('H');
-		Tile dummyTileThree = new Tile('I');
-		Tile dummyTileFour = new Tile('J');
-		Tile dummyTileFive = new Tile('I');
-		this.testTileGroup.append(dummyTileOne);
-		this.testTileGroup.append(dummyTileTwo);
-		this.testTileGroup.append(dummyTileThree);
-		this.testTileGroup.append(dummyTileFour);
-		this.testTileGroup.append(dummyTileFive);
+		
+		this.testTileGroup.append(new Tile('G'));
+		this.testTileGroup.append(new Tile('H'));
+		this.testTileGroup.append(new Tile('I'));
+		this.testTileGroup.append(new Tile('J'));
+		this.testTileGroup.append(new Tile('I'));
 		assertEquals('G', this.testTileGroup.tiles().get(0).getLetter());
 		assertEquals('H', this.testTileGroup.tiles().get(1).getLetter());
 		assertEquals('I', this.testTileGroup.tiles().get(2).getLetter());
