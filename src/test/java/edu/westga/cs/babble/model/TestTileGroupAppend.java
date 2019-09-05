@@ -34,7 +34,7 @@ class TestTileGroupAppend {
 	}
 	
 	/**
-	 *This method sets up the instance variable for the other methods
+	 *This method sets up the instance variable for the test methods
 	 * @throws Exception
 	 */
 	@BeforeEach
@@ -57,7 +57,7 @@ class TestTileGroupAppend {
 	 * This method ensures that an empty group is in fact empty
 	 */
 	@Test
-	public void EmptyGroupShouldBeEmpty() {
+	public void emptyGroupShouldBeEmpty() {
 		
 		assertEquals(0, this.testTileGroup.tiles().size());
 	}

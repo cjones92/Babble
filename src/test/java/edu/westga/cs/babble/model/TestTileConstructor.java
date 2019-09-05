@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
- * This class tests the TestTile constructor
+ * This class tests the Tile constructor
  * @author Chris Jones
  * @version August 27, 2019
  *

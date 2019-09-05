@@ -76,12 +76,11 @@ class TestTileBagDrawTile {
 	}
 	
 	/**
-	 * This method ensures that all of the tiles are drawn out in the right
-	 * configuration
+	 * This method ensures that all of the tiles drawn make up the correct configuration
 	 * @throws EmptyTileBagException
 	 */
 	@Test 
-	public void hasProperTileDistribution() throws EmptyTileBagException {
+	public void hasProperTileDistribution() {
 
 		ArrayList<Character> tiles = new ArrayList<Character>();
 		ArrayList<Character> letters = new ArrayList<Character>( Arrays.asList('A','A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
@@ -92,8 +91,15 @@ class TestTileBagDrawTile {
 				
 				for (int index = 0; index < 98; index++) {
 			
-				char pulledTile = this.testTileBag.drawTile().getLetter();
-				tiles.add(pulledTile);
+				char pulledTile;
+				try {
+					pulledTile = this.testTileBag.drawTile().getLetter();
+					tiles.add(pulledTile);
+				} catch (EmptyTileBagException e) {
+			
+					e.printStackTrace();
+				}
+				
 				
 			
 		}

@@ -20,7 +20,7 @@ class TestPlayedWordMatches {
 	private PlayedWord testPlayedWord;
 	
 	/**
-	 * This method sets up the instance variable for each method
+	 * This method sets up the instance variable for each test method
 	 * @throws Exception
 	 */
 	@BeforeEach
@@ -83,7 +83,7 @@ class TestPlayedWordMatches {
 	}
 	
 	/**
-	 * This method ensures that the matches method does match letters with
+	 * This method ensures that the matches method does match words with
 	 * duplicate letters
 	 */
 	@Test

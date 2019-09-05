@@ -52,7 +52,7 @@ class TestTileRackGetNumberOfTilesNeeded {
 	}
 	
 	/**
-	 * This method assures that a word with several tiles will need to have 
+	 * This method ensures that a word with several tiles will need to have 
 	 * some tiles added
 	 */
 	@Test 
@@ -72,7 +72,7 @@ class TestTileRackGetNumberOfTilesNeeded {
 	 * getNumberOfTilesNeeded method
 	 */
 	@Test
-	public void fullRackNeedsZeroFiles() {
+	public void fullRackNeedsZeroTiles() {
 		assertEquals(7, testTileRack.getNumberOfTilesNeeded());
 				
 		this.testTileRack.append(new Tile('A'));

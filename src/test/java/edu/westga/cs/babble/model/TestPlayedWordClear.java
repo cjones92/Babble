@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * This class assures that the clear method of the PlayedWord class works
+ * This class ensures that the clear method of the PlayedWord class works
  * correctly
  * @author Chris Jones	
  * @version August 29, 2019
@@ -20,7 +20,7 @@ class TestPlayedWordClear {
 	private PlayedWord testPlayedWord;
 	
 	/**
-	 * This method sets up the instance variable
+	 * This method sets up the instance variable for the testing methods
 	 * @throws Exception
 	 */
 	@BeforeEach

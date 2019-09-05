@@ -85,17 +85,21 @@ class TestTileGroupRemove {
 	 * @throws TileNotInGroupException
 	 */
 	@Test
-	public void canRemoveOnlyTileInTileGroup() throws TileNotInGroupException {
+	public void canRemoveOnlyTileInTileGroup()  {
 		
 		this.testTileGroup.append(new Tile('G'));
-		this.testTileGroup.remove(this.testTileGroup.tiles().get(0));
+		try {
+			this.testTileGroup.remove(this.testTileGroup.tiles().get(0));
+		} catch (TileNotInGroupException e) {
+			e.printStackTrace();
+		}
 		
 		assertEquals("", this.testTileGroup.getHand());
 	}
 	
 	/**
 	 * This method ensures that the remove method can remove the first tile
-	 * in a large word
+	 * in a collection of tiles
 	 * @throws TileNotInGroupException
 	 */
 	@Test
@@ -118,7 +122,7 @@ class TestTileGroupRemove {
 	
 	/**
 	 * This method ensures the remove method can remove the last tile
-	 * of a large word
+	 * of a collection of tiles
 	 * @throws TileNotInGroupException
 	 */
 	@Test 
@@ -132,7 +136,7 @@ class TestTileGroupRemove {
 		try {
 			this.testTileGroup.remove(this.testTileGroup.tiles().get(3));
 		} catch (TileNotInGroupException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 		
@@ -142,7 +146,7 @@ class TestTileGroupRemove {
 	
 	/**
 	 * This method ensures that the remove method can remove tiles from the
-	 * middle of a large word
+	 * middle of a collection of tiles
 	 * @throws TileNotInGroupException
 	 */
 	@Test
@@ -164,7 +168,7 @@ class TestTileGroupRemove {
 	
 	/**
 	 * This method ensures that the remove method can remove multiple
-	 * tiles from a large word
+	 * tiles from a tile collection
 	 * @throws TileNotInGroupException
 	 */
 	@Test
@@ -207,6 +211,7 @@ class TestTileGroupRemove {
 		}
 	
 		assertEquals('G', testTileGroup.getHand().charAt(0));
+		assertEquals('I', testTileGroup.getHand().charAt(1));
 	}
 
 }

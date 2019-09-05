@@ -19,7 +19,7 @@ class TestPlayedWordGetScore {
 	private PlayedWord testPlayedWord;
 	
 	/**
-	 * This method sets up the instance variable for each method
+	 * This method sets up the instance variable for each test method
 	 * @throws Exception
 	 */
 	@BeforeEach
@@ -28,7 +28,7 @@ class TestPlayedWordGetScore {
 	}
 
 	/**
-	 * This method ensures that an empty word received a score of 0
+	 * This method ensures that an empty word receives a score of 0
 	 */
 	@Test
 	public void emptyWordShouldHaveScoreOfZero() {
@@ -36,7 +36,7 @@ class TestPlayedWordGetScore {
 	}
 	
 	/**
-	 * This method ensures that a one-tile word is scored correctly 
+	 * This method ensures that a one-tile word can be scored 
 	 */
 	@Test
 	public void scoreAOneTileWord() {
@@ -48,8 +48,7 @@ class TestPlayedWordGetScore {
 	}
 	
 	/**
-	 * This method ensures that a word made up of differing tiles is scored
-	 * correctly
+	 * This method ensures that a word made up of differing tiles can be scored
 	 */
 	@Test
 	public void scoreAWordWithMultipleDifferingTiles() {
@@ -61,8 +60,7 @@ class TestPlayedWordGetScore {
 	}
 	
 	/**
-	 * This method ensures that a word with duplicate tiles is 
-	 * scored correctly
+	 * This method ensures that a word with duplicate tiles can be scored
 	 */
 	@Test
 	public void scoreAWordContainingDuplicateTiles() {
