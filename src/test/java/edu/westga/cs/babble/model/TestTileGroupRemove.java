@@ -99,14 +99,18 @@ class TestTileGroupRemove {
 	 * @throws TileNotInGroupException
 	 */
 	@Test
-	public void canRemoveFirstOfManyTilesFromTileGroup() throws TileNotInGroupException {
+	public void canRemoveFirstOfManyTilesFromTileGroup() {
 	
 		this.testTileGroup.append(new Tile('G'));
 		this.testTileGroup.append(new Tile('H'));
 		this.testTileGroup.append(new Tile('I'));
 		this.testTileGroup.append(new Tile('J'));
 		
-		this.testTileGroup.remove(this.testTileGroup.tiles().get(0));
+		try {
+			this.testTileGroup.remove(this.testTileGroup.tiles().get(0));
+		} catch (TileNotInGroupException e) {
+			e.printStackTrace();
+		}
 		
 		assertEquals("HIJ", this.testTileGroup.getHand());
 		
@@ -118,14 +122,19 @@ class TestTileGroupRemove {
 	 * @throws TileNotInGroupException
 	 */
 	@Test 
-	public void canRemoveLastOfManyTilesFromTileGroup() throws TileNotInGroupException {
+	public void canRemoveLastOfManyTilesFromTileGroup() {
 
 		this.testTileGroup.append(new Tile('G'));
 		this.testTileGroup.append(new Tile('H'));
 		this.testTileGroup.append(new Tile('I'));
 		this.testTileGroup.append(new Tile('J'));
 		
-		this.testTileGroup.remove(this.testTileGroup.tiles().get(3));
+		try {
+			this.testTileGroup.remove(this.testTileGroup.tiles().get(3));
+		} catch (TileNotInGroupException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		assertEquals("GHI", this.testTileGroup.getHand());
 		
@@ -137,14 +146,18 @@ class TestTileGroupRemove {
 	 * @throws TileNotInGroupException
 	 */
 	@Test
-	public void canRemoveMiddleOfManyTilesFromTileGroup() throws TileNotInGroupException {
+	public void canRemoveMiddleOfManyTilesFromTileGroup() {
 
 		this.testTileGroup.append(new Tile('G'));
 		this.testTileGroup.append(new Tile('H'));
 		this.testTileGroup.append(new Tile('I'));
 		this.testTileGroup.append(new Tile('J'));
 		
-		this.testTileGroup.remove(this.testTileGroup.tiles().get(1));
+		try {
+			this.testTileGroup.remove(this.testTileGroup.tiles().get(1));
+		} catch (TileNotInGroupException e) {
+			e.printStackTrace();
+		}
 		
 		assertEquals("GIJ", this.testTileGroup.getHand());
 	}
@@ -155,16 +168,20 @@ class TestTileGroupRemove {
 	 * @throws TileNotInGroupException
 	 */
 	@Test
-	public void canRemoveMultipleTilesFromTileGroup() throws TileNotInGroupException {
+	public void canRemoveMultipleTilesFromTileGroup() {
 		
 		this.testTileGroup.append(new Tile('G'));
 		this.testTileGroup.append(new Tile('H'));
 		this.testTileGroup.append(new Tile('I'));
 		this.testTileGroup.append(new Tile('J'));
 				
-		this.testTileGroup.remove(this.testTileGroup.tiles().get(1));
-		
-		this.testTileGroup.remove(this.testTileGroup.tiles().get(1));		
+		try {
+			this.testTileGroup.remove(this.testTileGroup.tiles().get(1));
+			this.testTileGroup.remove(this.testTileGroup.tiles().get(1));
+		} catch (TileNotInGroupException e) {
+			e.printStackTrace();
+		}		
+				
 		
 		assertEquals("GJ", this.testTileGroup.getHand());
 	}
@@ -175,7 +192,7 @@ class TestTileGroupRemove {
 	 * @throws TileNotInGroupException
 	 */
 	@Test
-	public void doesNotRemoveDuplicateTilesFromTileGroup() throws TileNotInGroupException {
+	public void doesNotRemoveDuplicateTilesFromTileGroup() {
 		
 		this.testTileGroup.append(new Tile('G'));
 		this.testTileGroup.append(new Tile('G'));
@@ -183,7 +200,11 @@ class TestTileGroupRemove {
 		this.testTileGroup.append(new Tile('J'));
 		
 		
-		this.testTileGroup.remove(this.testTileGroup.tiles().get(1));
+		try {
+			this.testTileGroup.remove(this.testTileGroup.tiles().get(1));
+		} catch (TileNotInGroupException e) {
+			e.printStackTrace();
+		}
 	
 		assertEquals('G', testTileGroup.getHand().charAt(0));
 	}

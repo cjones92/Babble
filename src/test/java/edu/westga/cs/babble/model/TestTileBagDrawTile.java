@@ -37,11 +37,15 @@ class TestTileBagDrawTile {
 	 * @throws EmptyTileBagException
 	 */
 	@Test
-	public void canDrawAllFiles() throws EmptyTileBagException {
+	public void canDrawAllTiles()  {
 		
 		for (int index = 0; index < 98; index++) {
 			
-		this.testTileBag.drawTile();
+		try {
+			this.testTileBag.drawTile();
+		} catch (EmptyTileBagException e) {
+			e.printStackTrace();
+		}
 			
 		}
 		
@@ -55,11 +59,15 @@ class TestTileBagDrawTile {
 	 * @throws EmptyTileBagException
 	 */
 	@Test
-	public void canNotDrawTooManyTiles() throws EmptyTileBagException {
+	public void canNotDrawTooManyTiles() {
 		
 		for (int index = 0; index < 98; index++) {
 			
-			this.testTileBag.drawTile();
+			try {
+				this.testTileBag.drawTile();
+			} catch (EmptyTileBagException e) {
+				e.printStackTrace();
+			}
 			
 		}
 		
