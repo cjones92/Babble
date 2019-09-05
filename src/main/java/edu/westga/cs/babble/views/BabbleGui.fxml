@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="255.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.babble.controllers.BabbleController">
    <children>
       <TextField fx:id="scoreText" editable="false" layoutX="202.0" layoutY="217.0" prefHeight="25.0" prefWidth="146.0">
