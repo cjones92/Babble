@@ -23,6 +23,7 @@ import javafx.util.Callback;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+
 /**
  * Controls behavior of the Babble GUI
  * 
@@ -129,71 +130,7 @@ public class BabbleController {
 		);
 
 	}
-
-	/**
-	 * This class creates CellFactory objects to handle the tiles in the ListViews
-	 * 
-	 * @author Chris Jones
-	 * @version August 21, 2019
-	 *
-	 */
-	class CellFactory implements Callback<ListView<Tile>, ListCell<Tile>> {
-		CellFactory() {
-		}
-
-		@Override
-		public ListCell<Tile> call(ListView<Tile> arg0) {
-
-			final TextFieldListCell<Tile> tilesForGame = new TextFieldListCell<Tile>();
-			tilesForGame.setConverter(new StringConverter<Tile>() {
-
-				@Override
-				public String toString(Tile letter) {
-					String lettersOfText = letter.getLetter() + "";
-					tilesForGame.setAccessibleText(lettersOfText);
-					return lettersOfText;
-
-				}
-
-				@Override
-				public Tile fromString(String tileString) {
-					return null;
-				}
-			});
-
-			return tilesForGame;
-		}
-	}
-
-	/**
-	 * This method increases the user's score by the amount the played word is worth
-	 * 
-	 * @param valueOfWord value of played word
-	 */
-	public void increaseScoreByNumber(int valueOfWord) {
-		int total = this.babbleScoreProperty.get();
-		total += valueOfWord;
-		this.babbleScoreProperty.set(total);
-	}
-
-	/**
-	 * This method adds tiles to the game
-	 */
-	public void addTilesToListView() {
-		int numberOfTiles = this.babbleTileRack.getNumberOfTilesNeeded();
-		for (int index = 0; index < numberOfTiles; index++) {
-			Tile tile = null;
-			try {
-				tile = this.babbleTileBag.drawTile();
-			} catch (EmptyTileBagException exceptionForTiles) {
-
-				exceptionForTiles.printStackTrace();
-			}
-			this.babbleTileRack.append(tile);
-		}
-
-	}
-
+	
 	/**
 	 * This method checks to see if a word is valid
 	 */
@@ -243,4 +180,74 @@ public class BabbleController {
 
 	}
 
+
+
+
+	/**
+	 * This class creates CellFactory objects to handle the tiles in the ListViews
+	 * 
+	 * @author Chris Jones
+	 * @version August 21, 2019
+	 *
+	 */
+	class CellFactory implements Callback<ListView<Tile>, ListCell<Tile>> {
+		CellFactory() {
+		}
+
+		@Override
+		public ListCell<Tile> call(ListView<Tile> arg0) {
+
+			final TextFieldListCell<Tile> tilesForGame = new TextFieldListCell<Tile>();
+			tilesForGame.setConverter(new StringConverter<Tile>() {
+
+				@Override
+				public String toString(Tile letter) {
+					String lettersOfText = letter.getLetter() + "";
+					tilesForGame.setAccessibleText(lettersOfText);
+					return lettersOfText;
+
+				}
+
+				@Override
+				public Tile fromString(String tileString) {
+					return null;
+				}
+			});
+
+			return tilesForGame;
+		}
+	}
+
+
+	/**
+	 * This method increases the user's score by the amount the played word is worth
+	 * 
+	 * @param valueOfWord value of played word
+	 */
+	public void increaseScoreByNumber(int valueOfWord) {
+		int total = this.babbleScoreProperty.get();
+		total += valueOfWord;
+		this.babbleScoreProperty.set(total);
+	}
+
+	/**
+	 * This method adds tiles to the game
+	 */
+	public void addTilesToListView() {
+		int numberOfTiles = this.babbleTileRack.getNumberOfTilesNeeded();
+		for (int index = 0; index < numberOfTiles; index++) {
+			Tile tile = null;
+			try {
+				tile = this.babbleTileBag.drawTile();
+			} catch (EmptyTileBagException exceptionForTiles) {
+
+				exceptionForTiles.printStackTrace();
+			}
+			this.babbleTileRack.append(tile);
+		}
+
+	}
+	
 }
+
+	
