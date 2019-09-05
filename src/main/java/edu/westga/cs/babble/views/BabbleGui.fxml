@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="255.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.babble.controllers.BabbleController">
+   <children>
+      <TextField fx:id="scoreText" editable="false" layoutX="202.0" layoutY="217.0" prefHeight="25.0" prefWidth="146.0">
+         <tooltip>
+            <Tooltip text="This shows the score you have earned." />
+         </tooltip></TextField>
+      <Button fx:id="resetButton" layoutX="202.0" layoutY="152.0" mnemonicParsing="false" onAction="#resetPlayedWord" text="Reset" />
+      <Button fx:id="playWordButton" layoutX="283.0" layoutY="152.0" mnemonicParsing="false" onAction="#checkValidWord" onMouseClicked="#checkValidWord" text="Play Word" />
+      <ListView fx:id="tilesListView" layoutX="47.0" layoutY="44.0" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="306.0">
+         <tooltip>
+            <Tooltip text="These letters are the ones you select from to make your words." />
+         </tooltip></ListView>
+      <ListView fx:id="wordListView" layoutX="50.0" layoutY="88.0" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="306.0">
+         <tooltip>
+            <Tooltip text="This is where you try to create a word from the letters you have selected." />
+         </tooltip></ListView>
+      <Label layoutX="14.0" layoutY="14.0" text="Tiles" />
+      <Label layoutX="14.0" layoutY="69.0" text="Your Word" />
+      <Label layoutX="127.0" layoutY="221.0" text="Score" />
+   </children>
+</AnchorPane>
