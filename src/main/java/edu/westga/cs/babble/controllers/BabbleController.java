@@ -77,7 +77,7 @@ public class BabbleController {
 	 * This method initializes the score area and sets up the binding between the
 	 * score text and the integer property
 	 */
-	public void initializeScoreArea() {
+	private void initializeScoreArea() {
 
 		this.scoreText.textProperty().bindBidirectional(this.babbleScoreProperty, new NumberStringConverter());
 	}
@@ -85,7 +85,7 @@ public class BabbleController {
 	/**
 	 * This method creates the ListView for the letters the user uses to play
 	 */
-	public void setUpTilesListView() {
+	private void setUpTilesListView() {
 		this.tilesListView.setItems(this.babbleTileRack.tiles());
 		this.tilesListView.setCellFactory(new CellFactory());
 		this.tilesListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -109,7 +109,7 @@ public class BabbleController {
 	/**
 	 * This method creates the ListView for where the user puts together words
 	 */
-	public void setUpwordListView() {
+	private void setUpwordListView() {
 		this.wordListView.setItems(this.babblePlayedWord.tiles());
 		this.wordListView.setCellFactory(new CellFactory());
 		this.wordListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -135,7 +135,7 @@ public class BabbleController {
 	 * This method checks to see if a word is valid
 	 */
 	@FXML
-	public void checkValidWord() {
+	private void checkValidWord() {
 		this.playWordButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -165,7 +165,7 @@ public class BabbleController {
 	 * together
 	 */
 	@FXML
-	public void resetPlayedWord() {
+	private void resetPlayedWord() {
 		this.resetButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -200,6 +200,9 @@ public class BabbleController {
 			final TextFieldListCell<Tile> tilesForGame = new TextFieldListCell<Tile>();
 			tilesForGame.setConverter(new StringConverter<Tile>() {
 
+				/**
+				 * This method produces a string of the letters
+				 */
 				@Override
 				public String toString(Tile letter) {
 					String lettersOfText = letter.getLetter() + "";
@@ -208,6 +211,9 @@ public class BabbleController {
 
 				}
 
+				/**
+				 * This method is an inherited method that this program will not be using
+				 */
 				@Override
 				public Tile fromString(String tileString) {
 					return null;
@@ -224,7 +230,7 @@ public class BabbleController {
 	 * 
 	 * @param valueOfWord value of played word
 	 */
-	public void increaseScoreByNumber(int valueOfWord) {
+	private void increaseScoreByNumber(int valueOfWord) {
 		int total = this.babbleScoreProperty.get();
 		total += valueOfWord;
 		this.babbleScoreProperty.set(total);
@@ -233,7 +239,7 @@ public class BabbleController {
 	/**
 	 * This method adds tiles to the game
 	 */
-	public void addTilesToListView() {
+	private void addTilesToListView() {
 		int numberOfTiles = this.babbleTileRack.getNumberOfTilesNeeded();
 		for (int index = 0; index < numberOfTiles; index++) {
 			Tile tile = null;
